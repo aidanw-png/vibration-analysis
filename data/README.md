@@ -13,7 +13,7 @@ directory. The files are **not committed** to the repository.
 
 | File | Description | Variable of interest |
 |------|-------------|----------------------|
-| `98.mat` | Normal baseline — 1 HP load, ~1772 rpm | `X098_DE_time` |
+| `Normal_1.mat` | Normal baseline — 1 HP load, ~1772 rpm | `X098_DE_time` |
 | `IR007_1.mat` | Inner race fault — 0.007" defect, load 1 | `X108_DE_time` |
 | `B007_1.mat` | Ball fault — 0.007" defect, load 1 | `X122_DE_time` |
 | `OR007@6_1.mat` | Outer race fault — 0.007" defect, centred at 6 o'clock, load 1 | `X135_DE_time` |
