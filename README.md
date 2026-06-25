@@ -188,53 +188,32 @@ interpretation specific to that application.
 
 ## Project structure
 
+```text
 vibration-analysis/
-
-├── src/
-
-│   ├── signal_processing/        # Domain-agnostic signal processing
-
-│   │   ├── spectral.py           # Welch PSD, FFT
-
-│   │   ├── filters.py            # Butterworth bandpass
-
-│   │   ├── envelope.py           # Hilbert envelope, envelope spectrum
-
-│   │   └── statistics.py         # RMS, kurtosis, peak detection
-
-│   ├── reporting/                # Standards-aware reporting utilities
-
-│   │   ├── octave_bands.py       # IEC 61260 third-octave conversion
-
-│   │   └── plotting.py           # Standardised plot helpers
-
-│   └── bearings/                 # Example application (CWRU-specific)
-
-│       ├── geometry.py           # Bearing geometry, fault frequencies
-
-│       └── cwru.py               # Dataset loading
-
-├── notebooks/
-
-│   ├── 01_data_exploration.ipynb     # Time-domain inspection
-
-│   ├── 02_frequency_domain.ipynb     # Raw Welch PSD analysis
-
-│   ├── 03_envelope_analysis.ipynb    # Envelope analysis development
-
-│   └── 04_bearing_diagnostics.ipynb  # Clean end-to-end pipeline
-
-├── figures/                      # Generated figures (referenced in README)
-
-├── data/                         # CWRU .mat files (download separately)
-
-│   └── README.md                 # Instructions for obtaining the dataset
-
-├── requirements.txt
-
-├── LICENSE                       # MIT
-
-└── README.md
+    src/
+        signal_processing/       Domain-agnostic signal processing
+            spectral.py          Welch PSD, FFT
+            filters.py           Butterworth bandpass
+            envelope.py          Hilbert envelope, envelope spectrum
+            statistics.py        RMS, kurtosis, peak detection
+        reporting/               Standards-aware reporting utilities
+            octave_bands.py      IEC 61260 third-octave conversion
+            plotting.py          Standardised plot helpers
+        bearings/                Example application (CWRU-specific)
+            geometry.py          Bearing geometry, fault frequencies
+            cwru.py              Dataset loading
+    notebooks/
+        01_data_exploration.ipynb     Time-domain inspection
+        02_frequency_domain.ipynb     Raw Welch PSD analysis
+        03_envelope_analysis.ipynb    Envelope analysis development
+        04_bearing_diagnostics.ipynb  Clean end-to-end pipeline
+    figures/                     Generated figures (referenced in README)
+    data/                        CWRU .mat files (download separately)
+        README.md                Instructions for obtaining the dataset
+    requirements.txt
+    LICENSE                      MIT
+    README.md
+```
 
 The split between `signal_processing`, `reporting`, and `bearings` is the
 architectural backbone of the project. The first two are domain-agnostic
