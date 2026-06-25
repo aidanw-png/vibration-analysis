@@ -6,7 +6,7 @@ and reporting modules are domain-agnostic and apply to any vibration
 measurement; the bearing analysis demonstrates the toolkit in use on a
 canonical benchmark dataset.
 
-![Raw spectrum vs envelope spectrum for the outer race fault condition](figures/raw_vs_envelope_outer_race.png)
+![Raw spectrum vs envelope spectrum for the outer race fault condition](figures/raw_vs_envelope_outer_race.png?v=2)
 
 *The diagnostic case for envelope analysis. The raw Welch PSD (top) shows
 the theoretical bearing fault frequencies present but indistinguishable from
