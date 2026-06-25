@@ -63,7 +63,9 @@ standards such as AS 2670 and ISO 2631.
 ## Methodology
 
 The analysis pipeline has four stages, each implemented as a module in
-`src/signal_processing` or `src/reporting`.
+`src/signal_processing` or `src/reporting`. Bearing geometry and published
+fault frequency coefficients for the SKF 6205-2RS JEM drive-end bearing
+are sourced from the [CWRU Bearing Data Center](https://engineering.case.edu/bearingdatacenter).
 
 **Time-domain characterisation.** Each acceleration record is summarised by
 standard scalar indicators: RMS for overall vibration energy, peak and crest
@@ -231,10 +233,110 @@ Notebook 04 is the deliverable, importing from `src/` and reproducing the
 full pipeline end-to-end in a polished form. The exploratory notebooks
 are the working; the clean notebook is the result.
 
+## How to run
 
+The analysis is reproducible from a fresh clone. The steps below assume
+Python 3.13 or compatible and a working `git` installation.
+
+**1. Clone the repository.**
+
+```bash
+git clone https://github.com/aidanw-png/vibration-analysis.git
+cd vibration-analysis
+```
+
+**2. Create and activate a virtual environment.**
+
+On Windows (PowerShell):
+
+```bash
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+```
+
+On macOS or Linux:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+**3. Install dependencies.**
+
+```bash
+pip install -r requirements.txt
+```
+
+**4. Download the CWRU bearing dataset.**
+
+The four .mat files used in the analysis are not included in the
+repository. Download them from the
+[CWRU Bearing Data Center](https://engineering.case.edu/bearingdatacenter)
+and place them in the `data/` folder. The required files are listed in
+[data/README.md](data/README.md).
+
+**5. Run the notebooks.**
+
+Open the project in VS Code or Jupyter, navigate to `notebooks/`, and run
+`04_bearing_diagnostics.ipynb` for the complete end-to-end pipeline. The
+notebooks `01` through `03` contain the exploratory development of each
+analysis stage and can be run in sequence to see the techniques built up
+from first principles.
 
 
 ## References
 
-This is the diagnostic basis of rolling element bearing fault detection
-([Randall and Antoni 2011](https://www.sciencedirect.com/science/article/abs/pii/S0888327010002530)).
+**Randall, R.B. and Antoni, J.** (2011). Rolling element bearing
+diagnostics: A tutorial. *Mechanical Systems and Signal Processing*,
+25(2), 485–520.
+DOI: [10.1016/j.ymssp.2010.07.017](https://www.sciencedirect.com/science/article/abs/pii/S0888327010002530)
+
+The canonical reference for rolling element bearing fault diagnostics.
+Covers the structural-resonance-excited-by-impacts mechanism, envelope
+analysis, spectral kurtosis, and the broader cyclostationary framework
+underpinning modern bearing diagnostics.
+
+**Case Western Reserve University Bearing Data Center.**
+[engineering.case.edu/bearingdatacenter](https://engineering.case.edu/bearingdatacenter)
+
+Publicly available benchmark dataset of bearing vibration recordings under
+seeded fault conditions. The drive-end accelerometer data at 12 kHz
+sampling is used as the worked example throughout this project. Bearing
+geometry, operating conditions, and characteristic frequency coefficients
+are published on the site.
+
+**Case Western Reserve University Bearing Data Center.**
+[engineering.case.edu/bearingdatacenter](https://engineering.case.edu/bearingdatacenter)
+
+Publicly available benchmark dataset of bearing vibration recordings under
+seeded fault conditions. The drive-end accelerometer data at 12 kHz
+sampling is used as the worked example throughout this project. Bearing
+geometry, operating conditions, and published characteristic frequency
+coefficients for the SKF 6205-2RS JEM and SKF 6203-2RS JEM are sourced
+from this site.
+
+**ISO 14837-1:2005.** Mechanical vibration: Ground-borne noise and
+vibration arising from rail systems. Part 1: General guidance.
+[iso.org/standard/31447.html](https://www.iso.org/standard/31447.html)
+
+International standard for assessment of ground-borne vibration and
+re-radiated noise from rail operations. Specifies measurement procedures
+in third-octave bands and provides the framework for compliance against
+human-exposure and structural-damage criteria.
+
+**IEC 61260-1:2014.** Electroacoustics: Octave-band and fractional-
+octave-band filters. Part 1: Specifications.
+[iec.ch/publications/61260-1](https://webstore.iec.ch/publication/5063)
+
+International standard defining the preferred centre frequencies and
+filter characteristics for octave-band and third-octave-band analysis.
+The third-octave centre frequencies used in this project follow the
+preferred series defined in this standard.
+
+**ISO 1683:2015.** Acoustics: Preferred reference values for acoustical
+and vibratory levels.
+[iso.org/standard/52054.html](https://www.iso.org/standard/52054.html)
+
+Standard for the reference values used in dB calculations across
+acoustics and vibration work, including the 10⁻⁶ m/s² reference for
+vibration acceleration used in this project's octave band reporting.
